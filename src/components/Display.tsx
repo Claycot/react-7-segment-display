@@ -8,6 +8,10 @@ type DisplayType = {
     color: string;
     backgroundColor?: string;
     skew: boolean;
+    paddingInner: string;
+    paddingOuter: string;
+    blankChar: string;
+    leadingZeroes: boolean;
 };
 
 export const Display = ({
@@ -17,6 +21,10 @@ export const Display = ({
     color = "red",
     backgroundColor,
     skew = false,
+    paddingInner= "20px",
+    paddingOuter= "20px",
+    blankChar="-",
+    leadingZeroes = true,
 }: DisplayType) => {
     const [digits, setDigits] = useState([]);
 
@@ -27,7 +35,7 @@ export const Display = ({
         alignItems: "center",
         height: "fit-content",
         width: "fit-content",
-        padding: "20px",
+        padding: paddingInner,
     } as React.CSSProperties;
 
     const displayStyle = {
@@ -38,7 +46,7 @@ export const Display = ({
         height: "fit-content",
         width: "fit-content",
         backgroundColor: backgroundColor ? backgroundColor : "transparent",
-        padding: "20px",
+        padding: paddingOuter,
         color: "white",
     } as React.CSSProperties;
 
@@ -49,7 +57,7 @@ export const Display = ({
             newDigits = null;
         }
 
-        if (value && count > value.toString().length) {
+        if (leadingZeroes && value && count > value.toString().length) {
             for (let i = 0; i < count - value.toString().length; i++) {
                 newDigits.unshift("0");
             }
@@ -63,27 +71,27 @@ export const Display = ({
             <div className="display-digits" style={style}>
                 {digits
                     ? digits.map((digit, index) => {
-                          return (
-                              <Digit
-                                  key={index}
-                                  char={digit}
-                                  height={height}
-                                  color={color}
-                                  skew={skew}
-                              />
-                          );
-                      })
+                        return (
+                            <Digit
+                                key={index}
+                                char={digit}
+                                height={height}
+                                color={color}
+                                skew={skew}
+                            />
+                        );
+                    })
                     : Array.from(Array(count).keys()).map((index) => {
-                          return (
-                              <Digit
-                                  key={index}
-                                  char="-"
-                                  height={height}
-                                  color={color}
-                                  skew={skew}
-                              />
-                          );
-                      })}
+                        return (
+                            <Digit
+                                key={index}
+                                char={blankChar}
+                                height={height}
+                                color={color}
+                                skew={skew}
+                            />
+                        );
+                    })}
             </div>
         </div>
     );

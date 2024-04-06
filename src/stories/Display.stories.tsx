@@ -33,4 +33,8 @@ Default.args = {
     count: 2,
     backgroundColor: "black",
     skew: false,
+    paddingInner: "20px",
+    paddingOuter: "20px",
+    blankChar: "-",
+    leadingZeroes: true,
 };
