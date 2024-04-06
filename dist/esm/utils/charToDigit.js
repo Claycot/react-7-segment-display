@@ -17,6 +17,7 @@ const charToDigit = {
     e: [1, 0, 0, 1, 1, 1, 1],
     f: [1, 0, 0, 0, 1, 1, 1],
     "-": [0, 0, 0, 0, 0, 0, 1],
+    " ": [0, 0, 0, 0, 0, 0, 0],
 };
 export default charToDigit;
 //# sourceMappingURL=charToDigit.js.map

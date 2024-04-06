@@ -1,6 +1,6 @@
 import { Digit } from "./Digit";
 import React, { useEffect, useState } from "react";
-export const Display = ({ count = 2, height = 250, value = null, color = "red", backgroundColor, skew = false, }) => {
+export const Display = ({ count = 2, height = 250, value = null, color = "red", backgroundColor, skew = false, paddingInner = "20px", paddingOuter = "20px", blankChar = "-", leadingZeroes = true, }) => {
     const [digits, setDigits] = useState([]);
     const style = {
         display: "flex",
@@ -9,7 +9,7 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
         alignItems: "center",
         height: "fit-content",
         width: "fit-content",
-        padding: "20px",
+        padding: paddingInner,
     };
     const displayStyle = {
         display: "flex",
@@ -19,7 +19,7 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
         height: "fit-content",
         width: "fit-content",
         backgroundColor: backgroundColor ? backgroundColor : "transparent",
-        padding: "20px",
+        padding: paddingOuter,
         color: "white",
     };
     useEffect(() => {
@@ -27,7 +27,7 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
         if (!value || count < value.toString().length) {
             newDigits = null;
         }
-        if (value && count > value.toString().length) {
+        if (leadingZeroes && value && count > value.toString().length) {
             for (let i = 0; i < count - value.toString().length; i++) {
                 newDigits.unshift("0");
             }
@@ -40,7 +40,7 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
                 return (React.createElement(Digit, { key: index, char: digit, height: height, color: color, skew: skew }));
             })
             : Array.from(Array(count).keys()).map((index) => {
-                return (React.createElement(Digit, { key: index, char: "-", height: height, color: color, skew: skew }));
+                return (React.createElement(Digit, { key: index, char: blankChar, height: height, color: color, skew: skew }));
             }))));
 };
 //# sourceMappingURL=Display.js.map

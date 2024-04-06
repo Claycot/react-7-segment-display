@@ -21,9 +21,9 @@ export const Display = ({
     color = "red",
     backgroundColor,
     skew = false,
-    paddingInner= "20px",
-    paddingOuter= "20px",
-    blankChar="-",
+    paddingInner = "20px",
+    paddingOuter = "20px",
+    blankChar = "-",
     leadingZeroes = true,
 }: DisplayType) => {
     const [digits, setDigits] = useState([]);
@@ -71,27 +71,27 @@ export const Display = ({
             <div className="display-digits" style={style}>
                 {digits
                     ? digits.map((digit, index) => {
-                        return (
-                            <Digit
-                                key={index}
-                                char={digit}
-                                height={height}
-                                color={color}
-                                skew={skew}
-                            />
-                        );
-                    })
+                          return (
+                              <Digit
+                                  key={index}
+                                  char={digit}
+                                  height={height}
+                                  color={color}
+                                  skew={skew}
+                              />
+                          );
+                      })
                     : Array.from(Array(count).keys()).map((index) => {
-                        return (
-                            <Digit
-                                key={index}
-                                char={blankChar}
-                                height={height}
-                                color={color}
-                                skew={skew}
-                            />
-                        );
-                    })}
+                          return (
+                              <Digit
+                                  key={index}
+                                  char={blankChar}
+                                  height={height}
+                                  color={color}
+                                  skew={skew}
+                              />
+                          );
+                      })}
             </div>
         </div>
     );

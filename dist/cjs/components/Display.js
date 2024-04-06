@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Display = void 0;
 const Digit_1 = require("./Digit");
 const react_1 = __importStar(require("react"));
-const Display = ({ count = 2, height = 250, value = null, color = "red", backgroundColor, skew = false, }) => {
+const Display = ({ count = 2, height = 250, value = null, color = "red", backgroundColor, skew = false, paddingInner = "20px", paddingOuter = "20px", blankChar = "-", leadingZeroes = true, }) => {
     const [digits, setDigits] = (0, react_1.useState)([]);
     const style = {
         display: "flex",
@@ -35,7 +35,7 @@ const Display = ({ count = 2, height = 250, value = null, color = "red", backgro
         alignItems: "center",
         height: "fit-content",
         width: "fit-content",
-        padding: "20px",
+        padding: paddingInner,
     };
     const displayStyle = {
         display: "flex",
@@ -45,7 +45,7 @@ const Display = ({ count = 2, height = 250, value = null, color = "red", backgro
         height: "fit-content",
         width: "fit-content",
         backgroundColor: backgroundColor ? backgroundColor : "transparent",
-        padding: "20px",
+        padding: paddingOuter,
         color: "white",
     };
     (0, react_1.useEffect)(() => {
@@ -53,7 +53,7 @@ const Display = ({ count = 2, height = 250, value = null, color = "red", backgro
         if (!value || count < value.toString().length) {
             newDigits = null;
         }
-        if (value && count > value.toString().length) {
+        if (leadingZeroes && value && count > value.toString().length) {
             for (let i = 0; i < count - value.toString().length; i++) {
                 newDigits.unshift("0");
             }
@@ -66,7 +66,7 @@ const Display = ({ count = 2, height = 250, value = null, color = "red", backgro
                 return (react_1.default.createElement(Digit_1.Digit, { key: index, char: digit, height: height, color: color, skew: skew }));
             })
             : Array.from(Array(count).keys()).map((index) => {
-                return (react_1.default.createElement(Digit_1.Digit, { key: index, char: "-", height: height, color: color, skew: skew }));
+                return (react_1.default.createElement(Digit_1.Digit, { key: index, char: blankChar, height: height, color: color, skew: skew }));
             }))));
 };
 exports.Display = Display;
