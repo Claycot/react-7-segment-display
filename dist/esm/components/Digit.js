@@ -13,12 +13,11 @@ export const Digit = ({ char = "-", blankChar = "-", color = "red", height = 250
     const [activeArray, setActiveArray] = useState(char ? charToDigit[char] : charToDigit[blankChar]);
     useEffect(() => {
         setActiveArray(char ? charToDigit[char] : charToDigit[blankChar]);
-        console.log(char);
-        console.log(activeArray);
     }, [char]);
     return (React.createElement("div", { className: "digit", style: style }, activeArray.map((active, index) => {
         const letter = letters[index];
-        if (rhsOnly && index !== 1 && index !== 2) {
+        // if rhsOnly is enabled, hide any segments that aren't B or C (the chars to make a 1 on the right)
+        if (rhsOnly && letter !== "B" && letter !== "C") {
             return null;
         }
         else {
