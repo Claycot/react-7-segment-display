@@ -31,7 +31,7 @@ const Segment_1 = __importDefault(require("./Segment"));
 const react_1 = __importStar(require("react"));
 const charToDigit_1 = __importDefault(require("../utils/charToDigit"));
 const letters = ["A", "B", "C", "D", "E", "F", "G"];
-const Digit = ({ char = "-", color = "red", height = 250, skew = false, }) => {
+const Digit = ({ char = "-", blankChar = "-", color = "red", height = 250, skew = false, rhsOnly = false, }) => {
     const style = {
         height: `${height}px`,
         width: `${height * 0.6}px`,
@@ -39,13 +39,20 @@ const Digit = ({ char = "-", color = "red", height = 250, skew = false, }) => {
         padding: skew ? "8px 0px" : "0",
         boxSizing: "border-box",
     };
-    const [activeArray, setActiveArray] = (0, react_1.useState)(char ? charToDigit_1.default[char] : charToDigit_1.default["-"]);
+    const [activeArray, setActiveArray] = (0, react_1.useState)(char ? charToDigit_1.default[char] : charToDigit_1.default[blankChar]);
     (0, react_1.useEffect)(() => {
-        setActiveArray(char ? charToDigit_1.default[char] : charToDigit_1.default["-"]);
+        setActiveArray(char ? charToDigit_1.default[char] : charToDigit_1.default[blankChar]);
+        console.log(char);
+        console.log(activeArray);
     }, [char]);
     return (react_1.default.createElement("div", { className: "digit", style: style }, activeArray.map((active, index) => {
         const letter = letters[index];
-        return (react_1.default.createElement(Segment_1.default, { key: letter, active: active === 1, size: height / 12.5, color: color, id: letter, skew: skew }));
+        if (rhsOnly && index !== 1 && index !== 2) {
+            return null;
+        }
+        else {
+            return (react_1.default.createElement(Segment_1.default, { key: letter, active: active === 1, size: height / 12.5, color: color, id: letter, skew: skew }));
+        }
     })));
 };
 exports.Digit = Digit;

@@ -12,6 +12,7 @@ type DisplayType = {
     paddingOuter: string;
     blankChar: string;
     leadingZeroes: boolean;
+    rhsOnlyFirstDigit: boolean;
 };
 
 export const Display = ({
@@ -25,6 +26,7 @@ export const Display = ({
     paddingOuter = "20px",
     blankChar = "-",
     leadingZeroes = true,
+    rhsOnlyFirstDigit = false,
 }: DisplayType) => {
     const [digits, setDigits] = useState([]);
 
@@ -57,9 +59,13 @@ export const Display = ({
             newDigits = null;
         }
 
-        if (leadingZeroes && value && count > value.toString().length) {
+        if (value && count > value.toString().length) {
             for (let i = 0; i < count - value.toString().length; i++) {
-                newDigits.unshift("0");
+                if (leadingZeroes) {
+                    newDigits.unshift("0");
+                } else {
+                    newDigits.unshift(" ");
+                }
             }
         }
 
@@ -75,9 +81,11 @@ export const Display = ({
                               <Digit
                                   key={index}
                                   char={digit}
+                                  blankChar={blankChar}
                                   height={height}
                                   color={color}
                                   skew={skew}
+                                  rhsOnly={rhsOnlyFirstDigit && index === 0}
                               />
                           );
                       })
@@ -86,9 +94,11 @@ export const Display = ({
                               <Digit
                                   key={index}
                                   char={blankChar}
+                                  blankChar={blankChar}
                                   height={height}
                                   color={color}
                                   skew={skew}
+                                  rhsOnly={rhsOnlyFirstDigit && index === 0}
                               />
                           );
                       })}
