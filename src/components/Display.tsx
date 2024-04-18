@@ -96,6 +96,7 @@ export const Display = ({
         // check a special error case for rhsOnlyFirstDigit where the first digit is cut in half (can only accommodate blank or 1)
         if (
             !errState &&
+            newDigits !== null &&
             rhsOnlyFirstDigit &&
             newDigits[0] !== " " &&
             newDigits[0] !== "1"

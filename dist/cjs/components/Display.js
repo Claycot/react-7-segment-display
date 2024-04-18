@@ -84,6 +84,7 @@ const Display = ({ count = 2, height = 250, value = null, color = "red", backgro
         // the "else" case here is that we have the perfect amount of digits for the display
         // check a special error case for rhsOnlyFirstDigit where the first digit is cut in half (can only accommodate blank or 1)
         if (!errState &&
+            newDigits !== null &&
             rhsOnlyFirstDigit &&
             newDigits[0] !== " " &&
             newDigits[0] !== "1") {
