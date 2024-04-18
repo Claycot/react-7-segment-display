@@ -22,14 +22,19 @@ export default App;
 
 ## Props
 
-| Name           | Decription                                                 | Type      | Default value |
-| -------------- | ---------------------------------------------------------- | --------- | ------------- |
-| value          | Value displayed on the display (in decimal or hexadecimal) | `any`     | `null`        |
-| color          | Color of the display segments when turned on               | `string`  | `"red"`       |
-| height         | Total height of the display digits                         | `number`  | `250`         |
-| count          | Amount of digits on the display                            | `number`  | `2`           |
-| bakgroundColor | Color of the background                                    | `string?` | n/a           |
-| skew           | Whether the digits are skewed or not                       | `boolean` | `false`       |
+| Name              | Decription                                                 | Type      | Default value |
+| ----------------- | ---------------------------------------------------------- | --------- | ------------- |
+| value             | Value displayed on the display (in decimal or hexadecimal) | `any`     | `null`        |
+| color             | Color of the display segments when turned on               | `string`  | `"red"`       |
+| height            | Total height of the display digits, in pixels              | `number`  | `250`         |
+| count             | Amount of digits on the display                            | `number`  | `2`           |
+| backgroundColor   | Color of the background (defaults to transparent)          | `string?` | n/a           |
+| skew              | Whether the digits are skewed or not                       | `boolean` | `false`       |
+| paddingInner      | Padding to use around the digits                           | `string`  | `"20px"`      |
+| paddingOuter      | Padding to use around the display                          | `string`  | `"20px"`      |
+| blankChar         | Character to display in each digit when no value provided  | `string`  | `"-"`         |
+| leadingZeroes     | Enable leading zeroes for short values                     | `boolean` | `true`        |
+| rhsOnlyFirstDigit | Draw the first digit as a blank or 1 only                  | `boolean` | `false`       |
 
 ### Valid values for `value`
 
