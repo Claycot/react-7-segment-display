@@ -1,4 +1,6 @@
 "use strict";
+// this holds styling for each segment
+// letters stand for segments using the common convention starting at A - top-horizontal
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.skewedSegmentStyle = exports.segmentStyle = void 0;
 exports.segmentStyle = {

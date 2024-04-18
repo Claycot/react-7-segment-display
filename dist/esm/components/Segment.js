@@ -1,6 +1,9 @@
+// a Segment is a lit/unlit rectangle which makes up a Digit
 import React from "react";
 import { segmentStyle, skewedSegmentStyle } from "../utils/segmentStyle";
 const Segment = ({ active, color, size, id, skew }) => {
+    // get the styling for the Segment, which is its shape and location
+    // the values are pre-determined and anchor at the top-left of the digit
     const ss = skew ? skewedSegmentStyle[id] : segmentStyle[id];
     const outerStyle = {
         filter: active

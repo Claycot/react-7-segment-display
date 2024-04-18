@@ -1,15 +1,19 @@
+// a Segment is a lit/unlit rectangle which makes up a Digit
+
 import React from "react";
 import { segmentStyle, skewedSegmentStyle } from "../utils/segmentStyle";
 
 type SegmentType = {
-    active: boolean;
-    color: string;
-    size: number;
-    id: string;
-    skew: boolean;
+    active: boolean; // lit/unlit state
+    color: string; // color of a Segment
+    size: number; // coefficient to size a Segment
+    id: string; // a character representing a Segment's location
+    skew: boolean; // option to skew digits to the right slightly, an authentic style. Default: false
 };
 
 const Segment = ({ active, color, size, id, skew }: SegmentType) => {
+    // get the styling for the Segment, which is its shape and location
+    // the values are pre-determined and anchor at the top-left of the digit
     const ss = skew ? skewedSegmentStyle[id] : segmentStyle[id];
 
     const outerStyle = {

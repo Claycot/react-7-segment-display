@@ -1,4 +1,5 @@
 "use strict";
+// a Segment is a lit/unlit rectangle which makes up a Digit
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -6,6 +7,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const segmentStyle_1 = require("../utils/segmentStyle");
 const Segment = ({ active, color, size, id, skew }) => {
+    // get the styling for the Segment, which is its shape and location
+    // the values are pre-determined and anchor at the top-left of the digit
     const ss = skew ? segmentStyle_1.skewedSegmentStyle[id] : segmentStyle_1.segmentStyle[id];
     const outerStyle = {
         filter: active

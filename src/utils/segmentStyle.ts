@@ -1,3 +1,6 @@
+// this holds styling for each segment
+// letters stand for segments using the common convention starting at A - top-horizontal
+
 export type SegmentStyleType = {
     id: string;
     clipPath: string;
