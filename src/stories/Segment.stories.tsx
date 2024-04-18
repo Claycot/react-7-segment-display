@@ -9,6 +9,12 @@ export default {
     argTypes: {
         active: { control: "boolean" },
         color: { control: "color" },
+        id: {
+            control: "select",
+            options: [
+                "A", "B", "C", "D", "E", "F", "G"
+            ],
+        },
         size: { control: "number" },
     },
 } as ComponentMeta<typeof Segment>;

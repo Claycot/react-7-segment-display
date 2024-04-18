@@ -18,6 +18,36 @@ export default {
         backgroundColor: {
             control: "color",
         },
+        skew: { control: "boolean" },
+        paddingInner: { control: "text" },
+        paddingOuter: { control: "text" },
+        blankChar: {
+            control: "select",
+            options: [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "@",
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "r",
+                "-",
+                " ",
+            ],
+        },
+        leadingZeroes: { control: "boolean" },
+        rhsOnlyFirstDigit: { control: "boolean" },
     },
 } as ComponentMeta<typeof Display>;
 
@@ -37,4 +67,5 @@ Default.args = {
     paddingOuter: "20px",
     blankChar: "-",
     leadingZeroes: true,
+    rhsOnlyFirstDigit: false,
 };

@@ -22,16 +22,19 @@ export default {
                 "7",
                 "8",
                 "9",
+                "@",
                 "a",
                 "b",
                 "c",
                 "d",
                 "e",
                 "f",
+                "r",
                 "-",
-                " ",
             ],
         },
+        skew: { control: "boolean" },
+        rhsOnly: { control: "boolean" },
     },
 } as ComponentMeta<typeof Digit>;
 
@@ -39,8 +42,9 @@ const Template: ComponentStory<typeof Digit> = (args) => <Digit {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+    char: "-",
     color: "red",
     height: 250,
-    char: "0",
     skew: false,
+    rhsOnly: false,
 };
