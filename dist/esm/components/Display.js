@@ -29,19 +29,14 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
     useEffect(() => {
         // split an incoming value into an array of chars to display
         let newDigits = value && value.toString().split("");
+        let errState = false;
         // if the input value is not provided, leave the display blank
         if (!value) {
             newDigits = null;
         }
         // if the display is too small for the input digits, set digits to error
         else if (count < value.toString().length) {
-            newDigits = getErrorDigits(count, rhsOnlyFirstDigit);
-        }
-        // check a special error case for rhsOnlyFirstDigit where the first digit is cut in half (can only accommodate blank or 1)
-        else if (rhsOnlyFirstDigit &&
-            newDigits[0] !== " " &&
-            newDigits[0] !== "1") {
-            newDigits = getErrorDigits(count, rhsOnlyFirstDigit);
+            errState = true;
         }
         // if there is a value and we have enough more than enough display digits for it, pad the start with zeroes or blanks
         else if (count > value.toString().length) {
@@ -61,8 +56,15 @@ export const Display = ({ count = 2, height = 250, value = null, color = "red", 
             }
         }
         // the "else" case here is that we have the perfect amount of digits for the display
+        // check a special error case for rhsOnlyFirstDigit where the first digit is cut in half (can only accommodate blank or 1)
+        if (!errState &&
+            rhsOnlyFirstDigit &&
+            newDigits[0] !== " " &&
+            newDigits[0] !== "1") {
+            errState = true;
+        }
         // for each digit in the display, set the values!
-        setDigits(newDigits);
+        setDigits(errState ? getErrorDigits(count, rhsOnlyFirstDigit) : newDigits);
     }, [count, value]);
     return (React.createElement("div", { className: "display", style: displayStyle },
         React.createElement("div", { className: "display-digits", style: style }, digits

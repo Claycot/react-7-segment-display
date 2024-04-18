@@ -3,20 +3,24 @@
 export function getErrorDigits(count: number, rhsOnlyFirstDigit: boolean) {
     // prioritize adding error digits in this order "e", "r", "r"
     const errDigits: string[] = ["e", "r", "r"];
-    let outDigits: string[] = [];
+    const outDigits: string[] = [];
 
-    // validDigits for adding err digits decreases by 1 if rhsOnlyFirstDigit is enabled
-    const validDigits: number = count - (rhsOnlyFirstDigit ? 1 : 0);
+    // if the first digit is an rhsOnly, it must be blank
     if (rhsOnlyFirstDigit) {
         outDigits.push(" ");
     }
 
-    // for each error digit, add it if there's space left in the display
-    for (let i = 0; i <= validDigits; i++) {
-        if (outDigits.length < count) {
-            outDigits.push(errDigits[i]);
-        } else {
-            break;
+    // for each remaining digit in the display, add either an err char or a blank
+    while (outDigits.length < count) {
+        const remainingDigits = count - outDigits.length;
+        // if there are more digits to add than err digits, pad with blanks
+        if (remainingDigits > errDigits.length) {
+            outDigits.push(" ");
+        }
+        // otherwise, pull from the start of the err digits array
+        else {
+            // use non-null assertion because else ensures array is not empty
+            outDigits.push(errDigits.shift()!);
         }
     }
 
