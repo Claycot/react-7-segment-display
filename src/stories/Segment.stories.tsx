@@ -11,9 +11,7 @@ export default {
         color: { control: "color" },
         id: {
             control: "select",
-            options: [
-                "A", "B", "C", "D", "E", "F", "G"
-            ],
+            options: ["A", "B", "C", "D", "E", "F", "G"],
         },
         size: { control: "number" },
     },
